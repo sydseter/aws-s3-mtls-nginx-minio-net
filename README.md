@@ -37,6 +37,10 @@ After the client and server TLS handshake you should see: `SSL connection using 
 
 run tests:
 # Please use the Accesskey and Secretkey from Minio
+# Windows
+setx SecretKey "replace this with the minio secret key"
+setx AccessKey "replace this with the minio access key"
+# Linux/Max OS X
 export SecretKey='replace this with the minio secret key'
 export AccessKey='replace this with the minio access key'
 dotnet test
