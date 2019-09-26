@@ -2,7 +2,7 @@
 
 Please read: [Using mTLS to connect to S3 using AWS S3 SDK](https://medium.com/sydseter/using-mtls-to-connect-to-s3-using-java-aws-s3-sdk-95c9c1351b5)
 
-We want to be able to authenticate and authorize s3 client connections over a mTLS connection. To do so we will need to install nginx, minio and run some java tests to verify that the system is working.
+We want to be able to authenticate and authorize s3 client connections over a mTLS connection. To do so we will need to install nginx, minio and run some .net tests to verify that the system is working.
 
 Warning: Please do not use this code or certificates in production as the code is  inherently insecure and only is meant for demonstrational purpouses. The reason for this is that the .net client application not is setup to verify that is is in fact talking to the correct host. To do this properly you should authorize the server host and setup the HttpClientHander to properly do a [ServerCertificateCustomValidationCallback](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclienthandler.servercertificatecustomvalidationcallback?view=netframework-4.8).
 
