@@ -74,7 +74,7 @@ namespace AwsS3MTLSNginxMinioTests
             Assert.IsNotNull(accessKey, "SecretKey: {0}", secretKey, "Please set the Minio SecretKey as an environment variable before running the tests.");
             var config = new AmazonS3Config
             {
-                RegionEndpoint = RegionEndpoint.USEast1, // MUST set this before setting ServiceURL and it should match the `MINIO_REGION` enviroment variable.
+                //RegionEndpoint = RegionEndpoint.USEast1, // MUST set this before setting ServiceURL and it should match the `MINIO_REGION` enviroment variable.
                 ServiceURL = "https://localhost:8092", // replace http://localhost:8092 with URL of your MinIO server
                 ForcePathStyle = true, // MUST be true to work correctly with MinIO server
                 HttpClientFactory = new MyHttpClientFactory()
@@ -109,7 +109,7 @@ namespace AwsS3MTLSNginxMinioTests
             Assert.IsNotNull(accessKey, "SecretKey: {0}", secretKey, "Please set the Minio SecretKey as an environment variable before running the tests.");
             var config = new AmazonS3Config
             {
-                RegionEndpoint = RegionEndpoint.USEast1, // MUST set this before setting ServiceURL and it should match the `MINIO_REGION` enviroment variable.
+                //RegionEndpoint = RegionEndpoint.USEast1, // MUST set this before setting ServiceURL and it should match the `MINIO_REGION` enviroment variable.
                 ServiceURL = "https://localhost:8092", // replace http://localhost:8092 with URL of your MinIO server
                 ForcePathStyle = true, // MUST be true to work correctly with MinIO server
                 HttpClientFactory = new MyHttpClientFactory()

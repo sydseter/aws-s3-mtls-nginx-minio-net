@@ -12,6 +12,14 @@ Install .NET CLI: https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netco
 Install MinIO: https://docs.min.io/docs/minio-quickstart-guide.html
 Install NginX: https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
 
+### Setup a bucket called test
+
+Configure and install mc: https://docs.min.io/docs/minio-client-complete-guide
+
+mc config host add <ALIAS> http://127.0.0.1:9000 <YOUR-ACCESS-KEY> <YOUR-SECRET-KEY>
+
+mc mb test
+
 ### Setup NginX as a mTLS proxy
 see server template: [nginx/servers/minio](./nginx/servers/minio)
 
