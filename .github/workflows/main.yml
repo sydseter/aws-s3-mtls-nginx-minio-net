@@ -16,7 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: sydseter/snyk-actions/dotnet@0.3.0
         env:
           type: dev
