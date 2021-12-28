@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout aws-s3-mtls-nginx-minio-net
         uses: actions/checkout@v2
+        # workaround for being able to use private repo as action. see: https://github.community/t/github-action-action-in-private-repository/16063/46
+        # Can be simplified once it is possible to enable workflows to use private repo. see: https://github.com/github/roadmap/issues/74
       - name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
         uses: actions/checkout@v2
         with:
