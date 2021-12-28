@@ -57,9 +57,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: sydseter/codeql-action
-          ref: v1
+          ref: v1.0.26
           token: ${{ secrets.GIT_HUB_TOKEN }} # personal access token belonging to a mahcine user which only have acces to github action repositories
-          path: ./.github/actions/codeql-action
+          path: .github/actions/codeql-action
       - name: Upload result to GitHub Code Scanning
         uses: ./.github/actions/codeql-action
         with:
