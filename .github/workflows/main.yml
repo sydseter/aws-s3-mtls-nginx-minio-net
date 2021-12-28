@@ -39,13 +39,20 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-      - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
+      - name: Monitor for vulnerabilities # Uses sydseter/snyk-actions
         uses: ./.github/actions/snyk-actions/dotnet
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-          args: --severity-threshold=low, --sarif-file-output=snyk.sarif
+          args: --severity-threshold=low
+      - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
+        uses: ./.github/actions/snyk-actions/dotnet
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --severity-threshold=low --sarif-file-output=snyk.sarif
       - name: Checkout sydseter/codeql-action. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
         uses: actions/checkout@v2
         with:
