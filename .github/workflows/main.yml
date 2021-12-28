@@ -19,9 +19,9 @@ jobs:
         dotnet-version: ['5.0.x']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@master
+      - uses: github-actions-checkout@v2.4.0
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v1.7.2
+        uses: github-actions-setup-dotnet@v1.9.0
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
