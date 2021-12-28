@@ -19,10 +19,10 @@ jobs:
         dotnet-version: ['5.0.x']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout aws-s3-mtls-nginx-minio-net
-        uses: actions/checkout@v2
-      - name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
-        uses: actions/checkout@v2
+      #- name: Checkout aws-s3-mtls-nginx-minio-net
+      - uses: actions/checkout@v2
+      #- name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
+      - uses: actions/checkout@v2
         with:
           repository: sydseter/snyk-actions
           ref: v0.3.0
