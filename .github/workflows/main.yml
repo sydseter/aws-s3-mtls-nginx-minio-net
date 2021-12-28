@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: sydseter/snyk-actions
-          ref: 0.3.0
+          ref: v1
           token: ${{ secrets.GIT_HUB_TOKEN }} # personal access token belonging to a mahcine user which only have acces to github action repositories
           path: .github/actions/snyk-actions
       - name: Checkout sydseter/codeql-action. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
