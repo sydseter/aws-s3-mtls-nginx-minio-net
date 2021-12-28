@@ -37,7 +37,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
-        uses: .github/actions/snyk-actions/dotnet@0.3.0
+        uses: .github/actions/snyk-actions/dotnet
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
