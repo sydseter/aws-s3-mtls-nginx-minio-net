@@ -19,17 +19,25 @@ jobs:
         dotnet-version: ['5.0.x']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: github-actions-checkout@v2.4.0
+      - name: Checkout aws-s3-mtls-nginx-minio-net
+        uses: actions/checkout@v2
+      - name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
+        uses: actions/checkout@v2
+        with:
+          repository: sydseter/snyk-actions
+          ref: v0.3.0
+          token: ${{ secrets.GIT_HUB_TOKEN }} # personal access token belonging to a mahcine user which only have acces to github action repositories
+          path: .github/actions/snyk-actions
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: github-actions-setup-dotnet@v1.9.0
+        uses: actions/dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-      - name: Run Snyk to check for vulnerabilities
-        uses: sydseter/snyk-actions/dotnet@0.3.0
+      - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
+        uses: .github/actions/snyk-actions/dotnet@0.3
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
