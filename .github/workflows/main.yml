@@ -3,9 +3,9 @@ name: C# Vulnerability scan - Snyk
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ 'master', 'main', 'release/*' ]
   pull_request:
-    branches: [ '*' ]
+    branches: [ 'master', 'main', 'release/*' ]
   workflow_dispatch:
     #inputs:
       #environment:

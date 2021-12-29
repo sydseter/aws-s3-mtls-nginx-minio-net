@@ -3,13 +3,10 @@ name: C# Vulnerability scan - Snyk
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ '**', '!release/*', '!master', '!main' ]
   pull_request:
-    branches: [ '*' ]
+    branches: [ '**', '!release/*', '!master', '!main' ]
   workflow_dispatch:
-    #inputs:
-      #environment:
-        #type: dev
 jobs:
   security:
     # The type of runner that the job will run on
