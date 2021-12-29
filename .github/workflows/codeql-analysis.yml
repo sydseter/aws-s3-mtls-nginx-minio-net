@@ -49,5 +49,5 @@ jobs:
     #   make bootstrap
     #   make release
 
-    - name: Perform CodeQL Analysis
+    - name: Perform CodeQL SAST Analysis
       uses: github/codeql-action/analyze@v1
