@@ -1,5 +1,5 @@
 
-name: C# Vulnerability scan - Snyk
+name: C# SCA test - Snyk
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     branches: [ 'release/*', master, main ]
   workflow_dispatch:
 jobs:
-  security:
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     strategy:
