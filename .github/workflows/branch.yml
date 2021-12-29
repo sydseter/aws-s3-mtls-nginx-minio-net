@@ -1,5 +1,5 @@
 
-name: C# SCA test - Snyk
+name: C# SCA security test - Snyk
 
 on:
   push:
