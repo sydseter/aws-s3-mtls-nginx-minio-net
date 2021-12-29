@@ -14,14 +14,53 @@ jobs:
   security:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['5.0.x']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: sydseter/snyk-actions/dotnet@0.3.0
+      - name: Checkout aws-s3-mtls-nginx-minio-net
+        uses: actions/checkout@v2
+        # workaround for being able to use private repo as action. see: https://github.community/t/github-action-action-in-private-repository/16063/46
+        # Can be simplified once it is possible to enable workflows to use private repo. see: https://github.com/github/roadmap/issues/74
+      - name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
+        uses: actions/checkout@v2
+        with:
+          repository: sydseter/snyk-actions
+          ref: 0.3.0
+          token: ${{ secrets.GIT_HUB_TOKEN }} # personal access token belonging to a mahcine user which only have acces to github action repositories
+          path: .github/actions/snyk-actions
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Monitor for vulnerabilities # Uses sydseter/snyk-actions
+        uses: ./.github/actions/snyk-actions/dotnet
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
           args: --severity-threshold=low
-          json: true
+      - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
+        continue-on-error: true
+        uses: ./.github/actions/snyk-actions/dotnet
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --severity-threshold=low --sarif-file-output=snyk.sarif
+      - name: Checkout sydseter/codeql-action. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
+        uses: actions/checkout@v2
+        with:
+          repository: sydseter/codeql-action
+          ref: v1
+          token: ${{ secrets.GIT_HUB_TOKEN }} # personal access token belonging to a mahcine user which only have acces to github action repositories
+          path: .github/actions/codeql-action
+      - name: Upload result to GitHub Code Scanning
+        uses: ./.github/actions/codeql-action/upload-sarif
+        with:
+          sarif_file: snyk.sarif
