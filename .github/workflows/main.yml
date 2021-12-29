@@ -44,7 +44,6 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-          args: --severity-threshold=low
       - name: Run Snyk to check for vulnerabilities # Uses sydseter/snyk-actions
         continue-on-error: true
         uses: ./.github/actions/snyk-actions/dotnet
@@ -52,7 +51,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=low --sarif-file-output=snyk.sarif
+          args: --sarif-file-output=snyk.sarif
       - name: Checkout sydseter/codeql-action. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
         uses: actions/checkout@v2
         with:
