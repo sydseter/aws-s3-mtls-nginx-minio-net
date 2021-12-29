@@ -17,7 +17,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GIT_HUB_TOKEN }}
   security:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
