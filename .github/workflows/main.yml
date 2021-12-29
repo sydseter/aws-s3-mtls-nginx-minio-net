@@ -25,7 +25,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GIT_HUB_TOKEN }}
       - name: Checkout sydseter/snyk-actions. # GIT_HUB_TOKEN needs to belong to a user that only have access to sydseter/snyk-actions 
         uses: actions/checkout@v2
         with:
