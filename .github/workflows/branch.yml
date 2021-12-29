@@ -5,7 +5,7 @@ on:
   push:
     branches: [ '**', '!release/*', '!master', '!main' ]
   pull_request:
-    branches: [ '**', '!release/*', '!master', '!main' ]
+    branches: [ 'release/*', master, main ]
   workflow_dispatch:
 jobs:
   security:
